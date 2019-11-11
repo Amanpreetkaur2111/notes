@@ -11,6 +11,7 @@ import UIKit
 class taskTableViewController: UITableViewController {
     
     var Folders: [String]?
+    var curIndex = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,15 +108,21 @@ cell.textLabel?.text = Folders![indexPath.row]
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if let detailView = segue.destination as? notesdetailViewController{
+    detailView.taskTable = self
+        }
     }
-    */
+    
  
     
     
@@ -143,6 +150,13 @@ cell.textLabel?.text = Folders![indexPath.row]
         
     }
     
-    
+    func updateText(text: String){
+        guard Folders != nil && curIndex != -1 else { return }
+        Folders![curIndex] = text
+        
+let indexPath = IndexPath(item: curIndex, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .middle)
+        
+    }
     
 }
