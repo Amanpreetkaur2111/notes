@@ -10,7 +10,7 @@ import UIKit
 
 class taskTableViewController: UITableViewController {
     
-    var Folders: [String]?
+    //var Folders: [String]?
 
 
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class taskTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = .black
-        Folders = []
+       // Folders = []
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = .lightGray
     }
@@ -36,17 +36,17 @@ class taskTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Folders?.count ?? 0
+        return datastore.returndatastore.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard Folders != nil else {
-            return UITableViewCell()
-        }
+//        guard Folders != nil else {
+//            return UITableViewCell()
+//        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "foldericon", for: indexPath)
-cell.textLabel?.text = Folders![indexPath.row]
+    cell.textLabel?.text = datastore.returndatastore[indexPath.row].Folders
    cell.imageView?.image = UIImage(named: "folder")
         // Configure the cell...
 
@@ -64,7 +64,7 @@ cell.textLabel?.text = Folders![indexPath.row]
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let action = UIContextualAction(style: .destructive, title: "delete") { (action, view, _) in
-            self.Folders?.remove(at: indexPath.row)
+            datastore.returndatastore.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
         
@@ -142,7 +142,8 @@ cell.textLabel?.text = Folders![indexPath.row]
         alert.addAction(cancel)
         alert.addAction(UIAlertAction(title: "AddItem", style: .default, handler: { (action) in
             let store = alert.textFields?.first?.text
-            self.Folders?.append(store!)
+            let s = datastore(Folders: store!, notes: [])
+            datastore.returndatastore.append(s)
             self.tableView.reloadData()
         }))
         alert.view.tintColor = .black

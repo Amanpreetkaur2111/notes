@@ -8,4 +8,11 @@
 
 import Foundation
 
+struct datastore {
+   
+    var Folders: String
+    var notes: [String]
+    static var returndatastore = [datastore]()
+}
+
 
