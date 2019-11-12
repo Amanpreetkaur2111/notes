@@ -25,7 +25,10 @@ class notesdetailViewController: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-    NotesTable?.updateText(text: textView.text)
+   
+        NotesTable?.updateText(text: textView.text)
+        
+    
     }
     
 

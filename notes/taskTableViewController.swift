@@ -11,7 +11,7 @@ import UIKit
 class taskTableViewController: UITableViewController {
     
     //var Folders: [String]?
-
+    var index : Int = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +45,10 @@ class taskTableViewController: UITableViewController {
 //        guard Folders != nil else {
 //            return UITableViewCell()
 //        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "foldericon", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "foldericon", for: indexPath)
     cell.textLabel?.text = datastore.returndatastore[indexPath.row].Folders
    cell.imageView?.image = UIImage(named: "folder")
+  cell.detailTextLabel?.text = "\(datastore.returndatastore[indexPath.row].notes.count)"
         // Configure the cell...
 
         return cell
@@ -72,6 +73,11 @@ class taskTableViewController: UITableViewController {
         
         return UISwipeActionsConfiguration(actions: [action])
     }
+    func reloadtable(){
+        tableView.reloadData()
+    }
+    
+    
     /*
    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -112,17 +118,20 @@ class taskTableViewController: UITableViewController {
     // MARK: - Navigation
 
 //    In a storyboard-based application, you will often want to do a little preparation before navigation
-   // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+if let details = segue.destination as? notesTableViewController {
+        details.dele  = self
         
-      //  if let detailView = segue.destination as? notesdetailViewController{
-  //  detailView.taskTable = self
-     //   }
-   // }
-    
+    if let tableviewCell = sender as? UITableViewCell{
+        if let indexvalue = tableView.indexPath(for: tableviewCell)?.row{
+            index = indexvalue
+       }
+   }
+    }}
  
     
     
@@ -142,8 +151,8 @@ class taskTableViewController: UITableViewController {
         alert.addAction(cancel)
         alert.addAction(UIAlertAction(title: "AddItem", style: .default, handler: { (action) in
             let store = alert.textFields?.first?.text
-            let s = datastore(Folders: store!, notes: [])
-            datastore.returndatastore.append(s)
+            let storedata = datastore(Folders: store!, notes: [])
+            datastore.returndatastore.append(storedata)
             self.tableView.reloadData()
         }))
         alert.view.tintColor = .black
@@ -152,5 +161,11 @@ class taskTableViewController: UITableViewController {
     }
     
    
+       // Get the new view controller using segue.destination.
+       // Pass the selected object to the new view controller.
+       
+      
+    }
+   
     
-}
+

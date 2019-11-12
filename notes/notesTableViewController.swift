@@ -10,9 +10,9 @@ import UIKit
 
 class notesTableViewController: UITableViewController {
 
-    var notes: [String]?
+   // var notes: [String]?
     var curIndex = -1
-    
+    var  dele : taskTableViewController?
     @IBOutlet weak var NotesTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class notesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
-        notes = []
+      //  notes = []
         
         
     }
@@ -36,14 +36,14 @@ class notesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return notes?.count ?? 0
+          return datastore.returndatastore[(dele?.index)!].notes.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "noteName") {
-            cell.textLabel?.text = notes![indexPath.row]
-        
+ cell.textLabel?.text = datastore.returndatastore[(dele?.index)!].notes[indexPath.row]
+//            print(dele?.index)
 
         // Configure the cell...
           return cell
@@ -95,31 +95,39 @@ class notesTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if let detailView = segue.destination as? notesdetailViewController {
-        detailView.NotesTable = self
+if let detailViewnote = segue.destination as? notesdetailViewController {
+        detailViewnote.NotesTable = self
             
             if let tableviewCell = sender as? UITableViewCell{
-                if let index = tableView.indexPath(for: tableviewCell)?.row {
-                    detailView.textString = notes![index]
-                    
-                    curIndex = index
+        if let indexnotes = tableView.indexPath(for: tableviewCell)?.row {
+                   // detailView.textString = [index]
+                    detailViewnote.textString = datastore.returndatastore[(dele?.index)!].notes[indexnotes]
+                   curIndex = indexnotes
                 }
             }
         }
     }
     
-    func updateText(text:String){
-        guard  notes != nil && curIndex != -1 else {
-            notes!.append(text)
-            NotesTable.reloadData()
+   func updateText(text:String) {
+    
+    tableView.reloadData()
+    dele?.reloadtable()
+    
+    guard datastore.returndatastore[(dele?.index)!].notes != [] &&
+    
+        curIndex != -1 else{
             
+            datastore.returndatastore[(dele?.index)!].notes.append(text)
+            tableView.reloadData()
+            dele?.reloadtable()
             return
-        }
-        
-        notes![curIndex] = text
-        
-        let indexpath = IndexPath(item: curIndex, section: 0)
-        tableView.reloadRows(at: [indexpath], with: .middle)
-        curIndex = -1
+            
+    }
+     datastore.returndatastore[(dele?.index)!].notes[curIndex] = text
+    
+    let indexpath = IndexPath(item: curIndex, section: 0)
+    tableView.reloadRows(at: [indexpath], with: .middle)
+
     }
 }
+
