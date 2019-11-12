@@ -118,12 +118,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem title="Item" image="trash" catalog="system" id="TDU-eO-Vpm"/>
+                        <barButtonItem title="Item" image="square.and.arrow.down" catalog="system" id="Bms-W8-0Cf"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Zx7-md-S3K"/>
                         <barButtonItem title="Item" image="pencil.and.ellipsis.rectangle" catalog="system" id="fhB-Up-VSX">
                             <connections>
                                 <segue destination="Lef-c6-Paw" kind="show" id="6YH-Kt-CKv"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Zx7-md-S3K"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Notes" id="nvr-kU-NFJ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -159,6 +161,8 @@
     <resources>
         <image name="folder.fill.badge.plus" catalog="system" width="64" height="42"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
+        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6YH-Kt-CKv"/>
