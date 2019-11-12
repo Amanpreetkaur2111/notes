@@ -15,6 +15,7 @@
 		9B3CBE4E2374E5710051D893 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3CBE4C2374E5710051D893 /* LaunchScreen.storyboard */; };
 		9B3CBE562374E66B0051D893 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3CBE552374E66B0051D893 /* folder.png */; };
 		9B3CBE582374E6960051D893 /* taskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CBE572374E6960051D893 /* taskTableViewController.swift */; };
+		9BEA215E237A1F51002A7CF6 /* notesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA215D237A1F51002A7CF6 /* notesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9B3CBE4F2374E5710051D893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3CBE552374E66B0051D893 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		9B3CBE572374E6960051D893 /* taskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTableViewController.swift; sourceTree = "<group>"; };
+		9BEA215D237A1F51002A7CF6 /* notesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				9B3CBE4F2374E5710051D893 /* Info.plist */,
 				9B3CBE572374E6960051D893 /* taskTableViewController.swift */,
 				9B2932C22379F6E5009FF16D /* notesdetailViewController.swift */,
+				9BEA215D237A1F51002A7CF6 /* notesTableViewController.swift */,
 			);
 			path = notes;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3CBE582374E6960051D893 /* taskTableViewController.swift in Sources */,
+				9BEA215E237A1F51002A7CF6 /* notesTableViewController.swift in Sources */,
 				9B2932C32379F6E5009FF16D /* notesdetailViewController.swift in Sources */,
 				9B3CBE462374E56F0051D893 /* ViewController.swift in Sources */,
 				9B3CBE442374E56F0051D893 /* AppDelegate.swift in Sources */,

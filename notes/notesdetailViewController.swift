@@ -14,7 +14,7 @@ class notesdetailViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     var textString : String?
-    weak var taskTable: taskTableViewController?
+    weak var NotesTable: notesTableViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +25,7 @@ class notesdetailViewController: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-  taskTable?.updateText(text: textView.text)
+    NotesTable?.updateText(text: textView.text)
     }
     
 
