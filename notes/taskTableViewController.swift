@@ -45,13 +45,15 @@ class taskTableViewController: UITableViewController {
 //        guard Folders != nil else {
 //            return UITableViewCell()
 //        }
-    let cell = tableView.dequeueReusableCell(withIdentifier: "foldericon", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "foldericon"){
     cell.textLabel?.text = datastore.returndatastore[indexPath.row].Folders
    cell.imageView?.image = UIImage(named: "folder")
   cell.detailTextLabel?.text = "\(datastore.returndatastore[indexPath.row].notes.count)"
         // Configure the cell...
 
         return cell
+    }
+        return UITableViewCell()
     }
     
     
