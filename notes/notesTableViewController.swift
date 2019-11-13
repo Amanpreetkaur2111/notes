@@ -17,6 +17,7 @@ class notesTableViewController: UITableViewController {
     @IBOutlet var TableViews: UITableView!
     var  dele : taskTableViewController?
     @IBOutlet weak var NotesTable: UITableView!
+    var notes_of_move : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,17 +81,25 @@ class notesTableViewController: UITableViewController {
         alertcontroller.addAction(DeleteAction)
         self.present(alertcontroller,animated: true,completion: nil)
     }
+    
+    
+  
+    
+    
+    
     func deleteRows()
     {
-    if let selectedrows = tableView.indexPathsForSelectedRows {
+       if  var  selectedrows = tableView.indexPathsForSelectedRows {
             
             var item = [String]()
             for indexPath in selectedrows{
     item.append(datastore.returndatastore[(dele?.index)!].notes[indexPath.row])
             }
             
+            notes_of_move = item
+        
     for i in item {
-    if let index = datastore.returndatastore[(dele?.index)!].notes.index(of: i){
+      if let index = datastore.returndatastore[(dele?.index)!].notes.index(of: i){
             datastore.returndatastore[(dele?.index)!].notes.remove(at: index)
                     
                 }
@@ -101,6 +110,9 @@ class notesTableViewController: UITableViewController {
             tableView.endUpdates()
         }
     }
+    
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         TableViews.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
@@ -148,8 +160,7 @@ class notesTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+      
         
 if let detailViewnote = segue.destination as? notesdetailViewController {
         detailViewnote.NotesTable = self
@@ -161,6 +172,10 @@ if let detailViewnote = segue.destination as? notesdetailViewController {
                    curIndex = indexnotes
                 }
             }
+}else if var data = segue.destination as? moveViewController{
+    data.delegate = self
+    deleteRows()
+    
         }
     }
     
