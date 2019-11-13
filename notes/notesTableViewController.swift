@@ -28,6 +28,10 @@ class notesTableViewController: UITableViewController {
         TableViews.allowsMultipleSelection = true
         delete.isEnabled = false
         move.isEnabled = false
+        self.view.backgroundColor = .gray
+        self.navigationItem.backBarButtonItem?.tintColor = .black
+        
+        
       //  notes = []
         
         

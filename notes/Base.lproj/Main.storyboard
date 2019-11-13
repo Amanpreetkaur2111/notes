@@ -61,7 +61,9 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Folder" id="FAh-gq-tcF"/>
+                    <navigationItem key="navigationItem" title="Folder" id="FAh-gq-tcF">
+                        <barButtonItem key="backBarButtonItem" title="Folder" id="SXa-rr-Tuv"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMT-sZ-gFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,6 +173,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <segue destination="Lef-c6-Paw" kind="show" trigger="accessoryAction" id="gnl-lq-ZwP"/>
                                 </connections>
@@ -203,6 +207,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Notes" id="nvr-kU-NFJ">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="RkT-wt-CAI">
+                            <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <connections>
                                 <action selector="shadow:" destination="eOV-51-ex2" id="xsK-dT-lGz"/>
                             </connections>

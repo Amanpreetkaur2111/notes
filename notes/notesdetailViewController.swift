@@ -21,6 +21,9 @@ class notesdetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         textView.text =  textString ?? ""
+        self.view.backgroundColor = .gray
+        self.textView.backgroundColor = .gray
+        self.textView.textColor = .white
     }
     
     

@@ -21,10 +21,12 @@ class taskTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.navigationItem.rightBarButtonItem?.tintColor = .black
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationItem.backBarButtonItem?.tintColor = .black
        // Folders = []
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = .lightGray
+        
     }
 
     // MARK: - Table view data source
@@ -49,6 +51,7 @@ class taskTableViewController: UITableViewController {
     cell.textLabel?.text = datastore.returndatastore[indexPath.row].Folders
    cell.imageView?.image = UIImage(named: "folder")
   cell.detailTextLabel?.text = "\(datastore.returndatastore[indexPath.row].notes.count)"
+            cell.detailTextLabel?.textColor = .white
         // Configure the cell...
 
         return cell
