@@ -12,6 +12,9 @@ class notesTableViewController: UITableViewController {
 
    // var notes: [String]?
     var curIndex = -1
+    @IBOutlet weak var delete: UIBarButtonItem!
+    @IBOutlet weak var move: UIBarButtonItem!
+    @IBOutlet var TableViews: UITableView!
     var  dele : taskTableViewController?
     @IBOutlet weak var NotesTable: UITableView!
     override func viewDidLoad() {
@@ -21,7 +24,9 @@ class notesTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        TableViews.allowsMultipleSelection = true
+        delete.isEnabled = false
+        move.isEnabled = false
       //  notes = []
         
         
@@ -36,7 +41,7 @@ class notesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-          return datastore.returndatastore[(dele?.index)!].notes.count ?? 0
+    return datastore.returndatastore[(dele?.index)!].notes.count ?? 0
     }
 
     
@@ -51,7 +56,58 @@ class notesTableViewController: UITableViewController {
     return UITableViewCell()
 }
     
-
+    @IBAction func shadow(_ sender: UIBarButtonItem) {
+        
+        if !delete.isEnabled {
+        move.isEnabled = true
+        delete.isEnabled = true
+        }
+        else{
+            delete.isEnabled = false
+            move.isEnabled = false
+        }
+    }
+    @IBAction func Delete(_ sender: UIBarButtonItem) {
+        
+        let alertcontroller = UIAlertController(title: "Delete", message: "Are You Sure", preferredStyle: .alert)
+        
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let DeleteAction  = UIAlertAction(title: "Delete", style: .default){ (action) in
+            self.deleteRows()
+            }
+        
+        alertcontroller.addAction(CancelAction)
+        alertcontroller.addAction(DeleteAction)
+        self.present(alertcontroller,animated: true,completion: nil)
+    }
+    func deleteRows()
+    {
+    if let selectedrows = tableView.indexPathsForSelectedRows {
+            
+            var item = [String]()
+            for indexPath in selectedrows{
+    item.append(datastore.returndatastore[(dele?.index)!].notes[indexPath.row])
+            }
+            
+    for i in item {
+    if let index = datastore.returndatastore[(dele?.index)!].notes.index(of: i){
+            datastore.returndatastore[(dele?.index)!].notes.remove(at: index)
+                    
+                }
+            }
+           
+            tableView.beginUpdates()
+            tableView.deleteRows(at: selectedrows, with: .automatic)
+            tableView.endUpdates()
+        }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        TableViews.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    }
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    TableViews.cellForRow(at: indexPath)?.accessoryType = .detailButton
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

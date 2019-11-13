@@ -99,6 +99,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kZ2-yq-QYB">
+                            <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items/>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="noteName" id="SLk-Og-2jD">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
@@ -118,7 +123,11 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Item" image="trash" catalog="system" id="TDU-eO-Vpm"/>
+                        <barButtonItem title="Item" image="trash" catalog="system" id="TDU-eO-Vpm">
+                            <connections>
+                                <action selector="Delete:" destination="eOV-51-ex2" id="cWj-6g-qNg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem title="Item" image="square.and.arrow.down" catalog="system" id="Bms-W8-0Cf"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Zx7-md-S3K"/>
                         <barButtonItem title="Item" image="pencil.and.ellipsis.rectangle" catalog="system" id="fhB-Up-VSX">
@@ -127,10 +136,19 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Notes" id="nvr-kU-NFJ"/>
+                    <navigationItem key="navigationItem" title="Notes" id="nvr-kU-NFJ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="RkT-wt-CAI">
+                            <connections>
+                                <action selector="shadow:" destination="eOV-51-ex2" id="xsK-dT-lGz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="NotesTable" destination="3nV-6p-JaY" id="GUO-rD-MI9"/>
+                        <outlet property="TableViews" destination="3nV-6p-JaY" id="0Jw-Ca-lqt"/>
+                        <outlet property="delete" destination="TDU-eO-Vpm" id="378-Tc-hfl"/>
+                        <outlet property="move" destination="Bms-W8-0Cf" id="QhF-aX-Mwm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiz-r2-b7e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -159,6 +177,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis" catalog="system" width="64" height="18"/>
         <image name="folder.fill.badge.plus" catalog="system" width="64" height="42"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
         <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>

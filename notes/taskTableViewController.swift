@@ -152,11 +152,30 @@ if let details = segue.destination as? notesTableViewController {
         alert.addAction(UIAlertAction(title: "AddItem", style: .default, handler: { (action) in
             let store = alert.textFields?.first?.text
             let storedata = datastore(Folders: store!, notes: [])
+            
+            
+            var flag = false
+            for i in datastore.returndatastore{
+                let store = storedata.Folders
+                if store == i.Folders {
+                    flag = true
+                    break
+                }}
+            if flag{
+                let alert = UIAlertController(title: "Name Taken", message: "Please choose another name", preferredStyle: .alert)
+                let OkAction = UIAlertAction(title: "ok", style: .destructive, handler: nil)
+                alert.addAction(OkAction)
+                self.present(alert,animated: true,completion: nil)
+            }
+            else {
             datastore.returndatastore.append(storedata)
-            self.tableView.reloadData()
+                self.tableView.reloadData()
+                }
+            
         }))
-        alert.view.tintColor = .black
-       self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true,completion: nil)
+              alert.view.tintColor = .black
+
         
     }
     
