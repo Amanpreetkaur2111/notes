@@ -38,10 +38,12 @@ class moveViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let alertcontroller = UIAlertController(title: "move to \(datastore.returndatastore[indexPath.row].Folders)", message: "Are You Sure", preferredStyle: .alert)
          
-         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (act) in
+             self.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
          let MoveAction  = UIAlertAction(title: "Move", style: .default){ (action) in
             datastore.returndatastore[indexPath.row].notes += self.delegate!.notes_of_move
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
+           
              }
          
          alertcontroller.addAction(CancelAction)
