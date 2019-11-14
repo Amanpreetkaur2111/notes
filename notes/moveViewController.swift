@@ -28,7 +28,7 @@ class moveViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
          func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "id") {
                 cell.textLabel?.text = datastore.returndatastore[indexPath.row].Folders
-                print(delegate!.notes_of_move)
+                
 
             // Configure the cell...
               return cell
@@ -43,7 +43,7 @@ class moveViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
         }
          let MoveAction  = UIAlertAction(title: "Move", style: .default){ (action) in
             datastore.returndatastore[indexPath.row].notes += self.delegate!.notes_of_move
-           
+            self.dismiss(animated: true, completion: nil)
              }
          
          alertcontroller.addAction(CancelAction)
@@ -63,4 +63,7 @@ class moveViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
     */
 
 
+    @IBAction func cancel(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

@@ -46,7 +46,7 @@ class notesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-    return datastore.returndatastore[(dele?.index)!].notes.count ?? 0
+    return datastore.returndatastore[(dele?.index)!].notes.count
     }
 
     
@@ -93,7 +93,7 @@ class notesTableViewController: UITableViewController {
     
     func deleteRows()
     {
-       if  var  selectedrows = tableView.indexPathsForSelectedRows {
+        if  let  selectedrows = tableView.indexPathsForSelectedRows {
             
             var item = [String]()
             for indexPath in selectedrows{
@@ -103,7 +103,7 @@ class notesTableViewController: UITableViewController {
             notes_of_move = item
         
     for i in item {
-      if let index = datastore.returndatastore[(dele?.index)!].notes.index(of: i){
+        if let index = datastore.returndatastore[(dele?.index)!].notes.firstIndex(of: i){
             datastore.returndatastore[(dele?.index)!].notes.remove(at: index)
                     
                 }
@@ -176,7 +176,7 @@ if let detailViewnote = segue.destination as? notesdetailViewController {
                    curIndex = indexnotes
                 }
             }
-}else if var data = segue.destination as? moveViewController{
+}else if let data = segue.destination as? moveViewController{
     data.delegate = self
     deleteRows()
     
